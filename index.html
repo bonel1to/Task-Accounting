@@ -8,6 +8,7 @@
 </head>
 <body>
   <div class="app-shell">
+    <!-- Верхняя панель приложения -->
     <header class="topbar">
       <div class="topbar__title">
         <span class="topbar__eyebrow">Task Desk</span>
@@ -22,9 +23,11 @@
       </div>
     </header>
 
+    <!-- Сводка по задачам -->
     <section class="stats" id="stats"></section>
 
     <main class="workspace">
+      <!-- Основная рабочая зона: создание, список, команда и канбан -->
       <div class="workspace__main">
         <section class="panel panel--primary create-panel">
           <div class="panel__head panel__head--split">
@@ -77,6 +80,7 @@
           <div class="status-line" id="form-status"></div>
         </section>
 
+        <!-- Список задач и фильтры -->
         <section class="panel">
           <div class="panel__head panel__head--split">
             <div>
@@ -114,6 +118,7 @@
           <div class="task-list" id="task-list"></div>
         </section>
 
+        <!-- Дополнительные информационные панели -->
         <div class="secondary-grid">
           <section class="panel panel--secondary">
             <div class="panel__head">
@@ -133,6 +138,7 @@
         </div>
       </div>
 
+      <!-- Боковая панель с карточкой выбранной задачи -->
       <aside class="workspace__side">
         <section class="panel panel--detail detail-panel">
           <div class="panel__head">

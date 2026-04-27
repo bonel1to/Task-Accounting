@@ -98,6 +98,7 @@ const elements = {
 let store = null;
 let selectedTaskId = null;
 
+// Store and theme helpers
 function cloneStore(data) {
   return structuredClone(data);
 }
@@ -125,18 +126,32 @@ function toggleTheme() {
   applyTheme(nextTheme);
 }
 
+function isValidStoreShape(data) {
+  return Boolean(
+    data &&
+    Array.isArray(data.tasks) &&
+    Array.isArray(data.users) &&
+    Array.isArray(data.statuses) &&
+    Array.isArray(data.priorities) &&
+    Array.isArray(data.comments)
+  );
+}
+
 function loadStore(forceReset = false) {
   if (!forceReset) {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        if (parsed && Array.isArray(parsed.tasks) && Array.isArray(parsed.users)) {
+        if (isValidStoreShape(parsed)) {
           store = parsed;
           selectedTaskId = store.tasks[0]?.id ?? null;
           return;
         }
-      } catch {}
+        console.warn("Saved project data has an unexpected structure. Initial data will be restored.");
+      } catch (error) {
+        console.warn("Failed to parse saved project data. Initial data will be restored.", error);
+      }
     }
   }
 
@@ -167,6 +182,7 @@ function getTaskComments(taskId) {
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 }
 
+// View-model helpers
 function getTaskView(task) {
   return {
     ...task,
@@ -228,6 +244,50 @@ function getPriorityClass(priority) {
   return "priority-low";
 }
 
+// Form helpers and validation
+function resetTaskFormState() {
+  elements.taskForm.reset();
+  elements.taskAssignee.value = String(store.users[0]?.id ?? "");
+  elements.taskPriority.value = String(store.priorities[1]?.id ?? store.priorities[0]?.id ?? "");
+  elements.taskStatus.value = String(store.statuses[0]?.id ?? "");
+}
+
+function isExistingUserId(userId) {
+  return store.users.some((user) => user.id === userId);
+}
+
+function isExistingStatusId(statusId) {
+  return store.statuses.some((status) => status.id === statusId);
+}
+
+function isExistingPriorityId(priorityId) {
+  return store.priorities.some((priority) => priority.id === priorityId);
+}
+
+function validateTaskInput({ title, deadline, assigneeId, priorityId, statusId }) {
+  if (!title || !deadline) {
+    return "Заполни название и срок задачи.";
+  }
+
+  if (Number.isNaN(new Date(deadline).getTime())) {
+    return "Укажи корректный срок задачи.";
+  }
+
+  if (!isExistingUserId(assigneeId)) {
+    return "Выбери корректного исполнителя.";
+  }
+
+  if (!isExistingPriorityId(priorityId)) {
+    return "Выбери корректный приоритет.";
+  }
+
+  if (!isExistingStatusId(statusId)) {
+    return "Выбери корректный статус.";
+  }
+
+  return "";
+}
+
 function populateFormSelects() {
   const assigneeOptions = store.users
     .map((user) => `<option value="${user.id}">${escapeHtml(user.name)}</option>`)
@@ -237,10 +297,10 @@ function populateFormSelects() {
     ...store.users.map((user) => `<option value="${user.id}">${escapeHtml(user.name)}</option>`)
   ].join("");
   const statusOptions = store.statuses
-    .map((status) => `<option value="${escapeHtml(status.name)}">${escapeHtml(status.name)}</option>`)
+    .map((status) => `<option value="${status.id}">${escapeHtml(status.name)}</option>`)
     .join("");
   const priorityOptions = store.priorities
-    .map((priority) => `<option value="${escapeHtml(priority.name)}">${escapeHtml(priority.name)}</option>`)
+    .map((priority) => `<option value="${priority.id}">${escapeHtml(priority.name)}</option>`)
     .join("");
 
   elements.taskAssignee.innerHTML = assigneeOptions;
@@ -249,9 +309,7 @@ function populateFormSelects() {
   elements.taskPriority.innerHTML = priorityOptions;
 
   elements.filterAssignee.value = "Все";
-  elements.taskAssignee.value = String(store.users[0]?.id ?? "");
-  elements.taskStatus.value = "Новая";
-  elements.taskPriority.value = "Средний";
+  resetTaskFormState();
 }
 
 function getFilteredTasks() {
@@ -271,6 +329,7 @@ function ensureSelectedTask(filteredTasks) {
   }
 }
 
+// Renderers
 function renderStats() {
   const taskViews = getAllTaskViews();
   const cards = [
@@ -456,6 +515,7 @@ function render() {
   renderTaskDetail();
 }
 
+// Task mutations
 function createTaskFromForm(event) {
   event.preventDefault();
 
@@ -464,16 +524,21 @@ function createTaskFromForm(event) {
   const description = String(formData.get("description")).trim();
   const assigneeId = Number(formData.get("assignee"));
   const deadline = String(formData.get("deadline"));
-  const priorityName = String(formData.get("priority"));
-  const statusName = String(formData.get("status"));
+  const priorityId = Number(formData.get("priority"));
+  const statusId = Number(formData.get("status"));
 
-  if (!title || !deadline) {
-    elements.formStatus.textContent = "Заполни название и срок задачи.";
+  const validationMessage = validateTaskInput({
+    title,
+    deadline,
+    assigneeId,
+    priorityId,
+    statusId
+  });
+
+  if (validationMessage) {
+    elements.formStatus.textContent = validationMessage;
     return;
   }
-
-  const priorityId = store.priorities.find((priority) => priority.name === priorityName)?.id ?? 2;
-  const statusId = store.statuses.find((status) => status.name === statusName)?.id ?? 1;
 
   const newTask = {
     id: `task-${Date.now()}`,
@@ -490,10 +555,7 @@ function createTaskFromForm(event) {
   store.tasks.unshift(newTask);
   selectedTaskId = newTask.id;
   saveStore();
-  elements.taskForm.reset();
-  elements.taskAssignee.value = String(store.users[0]?.id ?? "");
-  elements.taskPriority.value = "Средний";
-  elements.taskStatus.value = "Новая";
+  resetTaskFormState();
   elements.formStatus.textContent = `Задача "${title}" создана.`;
   render();
 }
@@ -510,8 +572,16 @@ function saveTaskChanges() {
   const statusId = Number(document.getElementById("detail-status").value);
   const commentText = document.getElementById("detail-comment").value.trim();
 
-  if (!title || !deadline) {
-    elements.formStatus.textContent = "Для сохранения задачи нужны название и срок.";
+  const validationMessage = validateTaskInput({
+    title,
+    deadline,
+    assigneeId,
+    priorityId,
+    statusId
+  });
+
+  if (validationMessage) {
+    elements.formStatus.textContent = validationMessage;
     return;
   }
 
@@ -576,6 +646,7 @@ function handleTaskSelection(event) {
   render();
 }
 
+// Event bindings
 elements.filterStatus.addEventListener("change", render);
 elements.filterAssignee.addEventListener("change", render);
 elements.viewMode.addEventListener("change", render);
