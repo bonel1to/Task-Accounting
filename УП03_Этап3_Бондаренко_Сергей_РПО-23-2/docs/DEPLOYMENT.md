@@ -77,7 +77,9 @@ scripts\check_deploy.bat
 scripts\restart.bat
 ```
 
-Скрипт проверяет проект и подсказывает выполнить push или вручную запустить workflow `Deploy static site to GitHub Pages` в разделе Actions.
+Скрипт проверяет проект и подсказывает выполнить push или вручную запустить новый workflow `Deploy static site to GitHub Pages` через кнопку `Run workflow` в разделе Actions.
+
+Важно: для GitHub Pages не нужно нажимать `Re-run jobs` внутри уже выполненного run, если в этом run уже был создан artifact `github-pages`. В таком случае GitHub может найти несколько artifact с одинаковым именем и завершить deploy с ошибкой `Multiple artifacts named "github-pages"`.
 
 ## 7. Остановка
 
