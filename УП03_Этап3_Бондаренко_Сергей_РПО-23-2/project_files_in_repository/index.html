@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Учёт задач команды</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Верхняя панель приложения -->
+    <header class="topbar">
+      <div class="topbar__title">
+        <span class="topbar__eyebrow">Task Desk</span>
+        <h1>Учёт задач команды</h1>
+      </div>
+
+      <div class="topbar__actions">
+        <div class="topbar__badge">Локальный проект</div>
+        <button type="button" class="button button--ghost theme-toggle" id="theme-toggle" aria-pressed="false">
+          Тёмная тема
+        </button>
+      </div>
+    </header>
+
+    <!-- Сводка по задачам -->
+    <section class="stats" id="stats"></section>
+
+    <main class="workspace">
+      <!-- Основная рабочая зона: создание, список, команда и канбан -->
+      <div class="workspace__main">
+        <section class="panel panel--primary create-panel">
+          <div class="panel__head panel__head--split">
+            <div>
+              <span class="panel__kicker">Главное действие</span>
+              <h2>Создание задачи</h2>
+            </div>
+            <div class="panel__tag">Новая задача</div>
+          </div>
+
+          <form id="task-form" class="create-form">
+            <div class="form-grid">
+              <div class="form-grid__full">
+                <label for="task-title">Название задачи</label>
+                <input id="task-title" name="title" type="text" placeholder="Например: Подготовить макет интерфейса" required>
+              </div>
+
+              <div class="form-grid__full">
+                <label for="task-description">Описание</label>
+                <textarea id="task-description" name="description" placeholder="Кратко опиши, что нужно сделать"></textarea>
+              </div>
+
+              <div>
+                <label for="task-assignee">Исполнитель</label>
+                <select id="task-assignee" name="assignee" required></select>
+              </div>
+
+              <div>
+                <label for="task-deadline">Срок</label>
+                <input id="task-deadline" name="deadline" type="date" required>
+              </div>
+
+              <div>
+                <label for="task-priority">Приоритет</label>
+                <select id="task-priority" name="priority" required></select>
+              </div>
+
+              <div>
+                <label for="task-status">Начальный статус</label>
+                <select id="task-status" name="status" required></select>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="button button--primary">Создать задачу</button>
+              <button type="button" class="button button--ghost" id="reset-storage">Сбросить данные</button>
+            </div>
+          </form>
+
+          <div class="status-line" id="form-status"></div>
+        </section>
+
+        <!-- Список задач и фильтры -->
+        <section class="panel">
+          <div class="panel__head panel__head--split">
+            <div>
+              <span class="panel__kicker">Рабочий список</span>
+              <h2>Список задач</h2>
+            </div>
+            <div class="panel__tag">Фильтры</div>
+          </div>
+
+          <div class="filters">
+            <div>
+              <label for="filter-status">Статус</label>
+              <select id="filter-status">
+                <option value="Все">Все</option>
+                <option value="Новая">Новая</option>
+                <option value="В работе">В работе</option>
+                <option value="Завершена">Завершена</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="filter-assignee">Исполнитель</label>
+              <select id="filter-assignee"></select>
+            </div>
+
+            <div>
+              <label for="view-mode">Режим просмотра</label>
+              <select id="view-mode">
+                <option value="all">Все задачи</option>
+                <option value="mine">Мои задачи</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="task-list" id="task-list"></div>
+        </section>
+
+        <!-- Дополнительные информационные панели -->
+        <div class="secondary-grid">
+          <section class="panel panel--secondary">
+            <div class="panel__head">
+              <span class="panel__kicker">Участники</span>
+              <h2>Команда</h2>
+            </div>
+            <div id="team-panel"></div>
+          </section>
+
+          <section class="panel panel--secondary">
+            <div class="panel__head">
+              <span class="panel__kicker">Статусы</span>
+              <h2>Канбан</h2>
+            </div>
+            <div class="kanban-board" id="kanban-board"></div>
+          </section>
+        </div>
+      </div>
+
+      <!-- Боковая панель с карточкой выбранной задачи -->
+      <aside class="workspace__side">
+        <section class="panel panel--detail detail-panel">
+          <div class="panel__head">
+            <span class="panel__kicker">Редактирование</span>
+            <h2>Карточка задачи</h2>
+          </div>
+          <div id="task-detail"></div>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
