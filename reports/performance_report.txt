@@ -1,0 +1,13 @@
+﻿Task-Accounting performance check
+Date: 
+07.06.2026 15:19:03
+URL: 
+https://bonel1to.github.io/Task-Accounting/
+HTTP status: 
+200
+Elapsed ms: 
+305
+Content length: 
+5991
+
+For stage screenshots also attach Chrome DevTools Performance or Lighthouse result.
