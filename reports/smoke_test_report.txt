@@ -1,0 +1,17 @@
+Task-Accounting smoke tests
+Date: 07.06.2026 15:19:01,65
+
+[1] Checking required files...
+Found index.html 
+Found styles.css 
+Found script.js 
+Found README.md 
+ 
+[2] Checking JavaScript syntax... 
+Found marker: task-form
+Found marker: task-list
+Found marker: kanban-board
+Found marker: task-detail
+Found marker: localStorage
+Found marker: validateTaskInput
+Smoke tests passed. 
