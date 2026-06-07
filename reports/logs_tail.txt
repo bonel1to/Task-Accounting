@@ -1,9 +1,0 @@
-Task-Accounting logs check
-Date: 07.06.2026 15:21:04,67
-
-Static GitHub Pages project has no server-side application logs.
-Quality evidence uses GitHub Actions deploy logs and browser DevTools Console.
-Expected result: no critical deploy errors in GitHub Actions and no critical red Console errors during the main scenario.
-
-GitHub Actions workflow: Deploy static site to GitHub Pages
-Public URL: https://bonel1to.github.io/Task-Accounting/
