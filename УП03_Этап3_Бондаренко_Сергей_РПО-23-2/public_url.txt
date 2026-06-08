@@ -1,0 +1,5 @@
+GitHub Pages URL after deployment:
+https://bonel1to.github.io/Task-Accounting/
+
+Deployment method:
+GitHub Pages via GitHub Actions workflow .github/workflows/pages.yml

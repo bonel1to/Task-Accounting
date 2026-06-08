@@ -1,0 +1,8 @@
+Task-Accounting restore report
+Date: 08.06.2026 22:41:13,70
+Checked backup directory: backups\task-accounting_20260608_224101
+
+Restore verification method: binary comparison of current index.html with latest backup copy.
+Result: restore source is readable and project file matches backup.
+
+For this static project, restore means copying backed-up files back to the repository directory.

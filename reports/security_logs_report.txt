@@ -1,0 +1,10 @@
+Task-Accounting security logs check
+Date: 08.06.2026 23:11:51,33
+
+Static GitHub Pages project has no server-side security log stream.
+Evidence sources:
+- GitHub Actions deployment logs
+- Browser DevTools Console during the main scenario
+- HTTP checks from stage 4
+
+Expected result: no repeated fatal/error/traceback messages during deployment and UI scenario.

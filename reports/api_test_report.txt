@@ -1,0 +1,10 @@
+﻿Task-Accounting HTTP/API adapted checks
+Date: 06/07/2026 15:19:02
+Base URL: https://bonel1to.github.io/Task-Accounting
+
+Main page: https://bonel1to.github.io/Task-Accounting/ -> HTTP 200, expected 200
+CSS asset: https://bonel1to.github.io/Task-Accounting/styles.css -> HTTP 200, expected 200
+JS asset: https://bonel1to.github.io/Task-Accounting/script.js -> HTTP 200, expected 200
+Missing asset: https://bonel1to.github.io/Task-Accounting/not-found-file.js -> HTTP 404, expected 404
+
+HTTP checks passed.

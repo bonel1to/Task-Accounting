@@ -1,0 +1,33 @@
+Task-Accounting security check
+Date: 08.06.2026 22:55:22,16
+
+[1] Suspicious words in source/config files
+No suspicious secrets found in source/config files.
+
+[2] Tracked .env files
+No tracked real .env files found.
+
+[3] Git status
+ M .gitignore
+ M docs/RISK_REGISTER.md
+?? .env.example
+?? SECURITY.md
+?? docs/BACKUP_RESTORE_REPORT.md
+?? docs/RECOMMENDATIONS.md
+?? docs/SECURITY_CHECKLIST.md
+?? docs/SECURITY_REPORT.docx
+?? reports/backup_report.txt
+?? reports/dependency_check_report.txt
+?? reports/ports_check_report.txt
+?? reports/restore_report.txt
+?? reports/security_logs_report.txt
+?? reports/security_scan_report.txt
+?? scripts/backup.bat
+?? scripts/deps-check.bat
+?? scripts/logs-security.bat
+?? scripts/ports-check.bat
+?? scripts/restore.bat
+?? scripts/security-check.bat
+?? "\320\243\320\23703_\320\255\321\202\320\260\320\2775_\320\221\320\276\320\275\320\264\320\260\321\200\320\265\320\275\320\272\320\276_\320\241\320\265\321\200\320\263\320\265\320\271_\320\240\320\237\320\236-23-2/"
+
+Expected result: no real passwords, tokens, keys, database dumps or .env files in Git.

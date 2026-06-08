@@ -1,0 +1,22 @@
+Task-Accounting backup report
+Date: 08.06.2026 22:41:01,66
+Backup directory: backups\task-accounting_20260608_224101
+
+ Volume in drive C is SSD
+ Volume Serial Number is A624-2F33
+
+ Directory of C:\Users\fazbe\Downloads\Task-Accounting\backups\task-accounting_20260608_224101
+
+08.06.2026  22:41    <DIR>          .
+08.06.2026  22:41    <DIR>          ..
+03.06.2026  16:55               198 .env.demo.example
+08.06.2026  22:37               186 .env.example
+03.06.2026  16:55               167 .env.production.example
+02.06.2026  17:49             5 991 index.html
+02.06.2026  17:49             2 114 README.md
+02.06.2026  17:49            22 556 script.js
+02.06.2026  17:49             9 598 styles.css
+               7 File(s)         40 810 bytes
+               2 Dir(s)  309 165 346 816 bytes free
+
+Static project has no database. Backup covers source files and safe environment examples.

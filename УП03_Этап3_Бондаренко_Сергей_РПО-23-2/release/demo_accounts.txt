@@ -1,0 +1,9 @@
+Authorization is not used in this project.
+
+Demo users are built into script.js:
+- Иван
+- Мария
+- Сергей
+- Анна
+
+Task data is stored locally in the browser through localStorage.
