@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check required files
+        run: |
+          test -f index.html
+          test -f styles.css
+          test -f script.js
+          test -f README.md
+          test -f CHANGELOG.md
+          test -f RELEASE_NOTES.md
+
+      - name: Check JavaScript syntax
+        run: node --check script.js
+
+      - name: Check UI markers
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const content = fs.readFileSync('index.html', 'utf8') + fs.readFileSync('script.js', 'utf8');
+          const markers = ['task-form', 'task-list', 'kanban-board', 'task-detail', 'localStorage', 'validateTaskInput'];
+          const missing = markers.filter((marker) => !content.includes(marker));
+          if (missing.length) {
+            console.error(`Missing UI markers: ${missing.join(', ')}`);
+            process.exit(1);
+          }
+          console.log('All UI markers found.');
+          NODE
+
+      - name: Verify release files
+        run: |
+          grep -q "0.1.1" CHANGELOG.md
+          grep -q "0.1.1" RELEASE_NOTES.md
+          grep -q "support/ci-release-incident" docs/INCIDENT_REPORT.md
