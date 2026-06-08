@@ -1,0 +1,10 @@
+Task-Accounting dependency check
+Date: 08.06.2026 22:59:21,30
+
+Project stack: static HTML, CSS and JavaScript.
+package.json: not used.
+node_modules: not required.
+Python/.NET/Java dependencies: not used.
+
+npm audit / pip-audit are not applicable because the project has no package manifest and no external runtime dependencies.
+Result: no vulnerable third-party dependencies detected in repository configuration.
