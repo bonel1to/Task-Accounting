@@ -1,0 +1,25 @@
+Task-Accounting support diagnostics
+Date: 2026-06-08
+
+Checked files:
+- .github/workflows/pages.yml
+- scripts/test.bat
+- scripts/quality-check.bat
+- scripts/security-check.bat
+- scripts/build_release.bat
+- docs/INCIDENT_REPORT.md
+- docs/RELEASE_CHECKLIST.md
+
+Diagnosis:
+The project already had separate checks from previous stages:
+- smoke test
+- quality check
+- GitHub Pages deployment
+- security/dependency checks
+- release archive build
+
+Root cause:
+These checks were not connected into a single maintenance/release flow. GitHub Actions deployment checked JavaScript syntax, but there was no separate CI workflow for push/pull_request validation and no local release-check command that runs tests, quality checks, security checks and build in one place.
+
+Fix:
+Added .github/workflows/ci.yml, scripts/release-check.bat, scripts/build.bat, scripts/create-release.bat, CHANGELOG.md and RELEASE_NOTES.md.

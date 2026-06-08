@@ -1,0 +1,77 @@
+Task-Accounting release check
+Date: 08.06.2026 23:42:01,21
+
+[1] Smoke tests
+========================================
+Task-Accounting smoke tests
+========================================
+Report: reports\smoke_test_report.txt
+Found index.html
+Found styles.css
+Found script.js
+Found README.md
+
+[2] Checking JavaScript syntax...
+
+[3] Checking expected UI markers...
+Smoke tests passed.
+ 
+[2] Quality check 
+========================================
+Task-Accounting quality check
+========================================
+========================================
+Task-Accounting smoke tests
+========================================
+Report: reports\smoke_test_report.txt
+Found index.html
+Found styles.css
+Found script.js
+Found README.md
+
+[2] Checking JavaScript syntax...
+
+[3] Checking expected UI markers...
+Smoke tests passed.
+========================================
+Task-Accounting HTTP/API adapted checks
+========================================
+Report: reports\api_test_report.txt
+Main page: https://bonel1to.github.io/Task-Accounting/ -> HTTP 200, expected 200
+CSS asset: https://bonel1to.github.io/Task-Accounting/styles.css -> HTTP 200, expected 200
+JS asset: https://bonel1to.github.io/Task-Accounting/script.js -> HTTP 200, expected 200
+Missing asset: https://bonel1to.github.io/Task-Accounting/not-found-file.js -> HTTP 404, expected 404
+HTTP/API adapted checks passed.
+========================================
+Task-Accounting logs check
+========================================
+Task-Accounting logs check
+Date: 08.06.2026 23:42:02,94
+
+Static GitHub Pages project has no server-side application logs.
+Quality evidence uses GitHub Actions deploy logs and browser DevTools Console.
+Expected result: no critical deploy errors in GitHub Actions and no critical red Console errors during the main scenario.
+
+GitHub Actions workflow: Deploy static site to GitHub Pages
+Public URL: https://bonel1to.github.io/Task-Accounting/
+========================================
+Task-Accounting performance check
+========================================
+Report: reports\performance_report.txt
+Task-Accounting performance check
+Date: 
+
+8 июня 2026 г. 23:42:03
+URL: 
+https://bonel1to.github.io/Task-Accounting/
+HTTP status: 
+200
+Elapsed ms: 
+319
+Content length: 
+5991
+
+For stage screenshots also attach Chrome DevTools Performance or Lighthouse result.
+
+
+Quality check completed successfully.
