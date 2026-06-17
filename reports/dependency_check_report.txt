@@ -1,5 +1,5 @@
 Task-Accounting dependency check
-Date: 08.06.2026 22:59:21,30
+Date: 09.06.2026  0:01:58,83
 
 Project stack: static HTML, CSS and JavaScript.
 package.json: not used.
@@ -8,3 +8,16 @@ Python/.NET/Java dependencies: not used.
 
 npm audit / pip-audit are not applicable because the project has no package manifest and no external runtime dependencies.
 Result: no vulnerable third-party dependencies detected in repository configuration.
+ 
+[5] Build release archive 
+========================================
+Task-Accounting build
+========================================
+========================================
+Task-Accounting release archive build
+========================================
+Release archive created:
+  release\project_release.zip
+Build completed successfully.
+ 
+Release check passed. 

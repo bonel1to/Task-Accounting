@@ -1,5 +1,5 @@
 Task-Accounting security check
-Date: 08.06.2026 22:55:22,16
+Date: 09.06.2026  0:01:58,53
 
 [1] Suspicious words in source/config files
 No suspicious secrets found in source/config files.
@@ -8,26 +8,41 @@ No suspicious secrets found in source/config files.
 No tracked real .env files found.
 
 [3] Git status
- M .gitignore
- M docs/RISK_REGISTER.md
-?? .env.example
-?? SECURITY.md
-?? docs/BACKUP_RESTORE_REPORT.md
-?? docs/RECOMMENDATIONS.md
-?? docs/SECURITY_CHECKLIST.md
-?? docs/SECURITY_REPORT.docx
-?? reports/backup_report.txt
-?? reports/dependency_check_report.txt
-?? reports/ports_check_report.txt
-?? reports/restore_report.txt
-?? reports/security_logs_report.txt
-?? reports/security_scan_report.txt
-?? scripts/backup.bat
-?? scripts/deps-check.bat
-?? scripts/logs-security.bat
-?? scripts/ports-check.bat
-?? scripts/restore.bat
-?? scripts/security-check.bat
-?? "\320\243\320\23703_\320\255\321\202\320\260\320\2775_\320\221\320\276\320\275\320\264\320\260\321\200\320\265\320\275\320\272\320\276_\320\241\320\265\321\200\320\263\320\265\320\271_\320\240\320\237\320\236-23-2/"
+ M release/project_release.zip
+ M reports/api_test_report.txt
+ M reports/dependency_check_report.txt
+ M reports/logs_tail.txt
+ M reports/performance_report.txt
+ M reports/security_scan_report.txt
+ M reports/smoke_test_report.txt
+?? .github/workflows/ci.yml
+?? CHANGELOG.md
+?? RELEASE_NOTES.md
+?? docs/INCIDENT_REPORT.md
+?? docs/RELEASE_CHECKLIST.md
+?? docs/SUPPORT_REPORT.docx
+?? release/task-accounting-v0.1.1.zip
+?? reports/release_check_report.txt
+?? reports/support_diagnostics.txt
+?? reports/support_incident_reproduction.txt
+?? scripts/build.bat
+?? scripts/create-release.bat
+?? scripts/release-check.bat
+?? "\320\243\320\23703_\320\255\321\202\320\260\320\2776_\320\221\320\276\320\275\320\264\320\260\321\200\320\265\320\275\320\272\320\276_\320\241\320\265\321\200\320\263\320\265\320\271_\320\240\320\237\320\236-23-2/"
 
 Expected result: no real passwords, tokens, keys, database dumps or .env files in Git.
+ 
+[4] Dependency check 
+========================================
+Task-Accounting dependency check
+========================================
+Task-Accounting dependency check
+Date: 09.06.2026  0:01:58,83
+
+Project stack: static HTML, CSS and JavaScript.
+package.json: not used.
+node_modules: not required.
+Python/.NET/Java dependencies: not used.
+
+npm audit / pip-audit are not applicable because the project has no package manifest and no external runtime dependencies.
+Result: no vulnerable third-party dependencies detected in repository configuration.

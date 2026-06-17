@@ -1,0 +1,19 @@
+Task-Accounting support incident reproduction
+Date: 2026-06-08
+
+Incident:
+The repository had GitHub Pages deployment automation, but did not have a separate support CI workflow and a single release-check command.
+
+Reproduction steps before fix:
+1. Open .github/workflows.
+2. pages.yml exists and deploys GitHub Pages.
+3. ci.yml does not exist, so push/pull_request support checks are not separated from deployment.
+4. Open scripts.
+5. release-check.bat and create-release.bat do not exist.
+6. Root CHANGELOG.md and root RELEASE_NOTES.md do not exist.
+
+Actual result:
+No repeatable support/release workflow is available for maintenance work.
+
+Expected result:
+Repository has CI workflow, release-check command, changelog, release notes and release artifact creation command.
